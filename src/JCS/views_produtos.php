@@ -3,8 +3,8 @@
 use JCS\Banco;
 use JCS\Conexao;
 
-$conexao = new Conexao();
+$com = new Conexao();
 
-$db = new Banco($conexao->getDB());
+$db = new Banco($com->getDB());
 
 $db->listar();

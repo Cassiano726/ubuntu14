@@ -14,7 +14,7 @@ if (!isset($_GET['page']))/* Na 1° versão desse código foi usado o <PHP if(!$
     
     require("html/home.php");
 else 
-    require("src/JCS/{$_GET['page']}.php");//Lembrar que pode implementar dessa forma.
+    require_once("src/JCS/{$_GET['page']}.php");//Lembrar que pode implementar dessa forma.
 
 
 
