@@ -1,6 +1,7 @@
 <?php
-require'src/JCS/Banco.php';
 
+use JCS\Conexao;
+use JCS\Banco;
 
 if(!empty($_POST)){
     
@@ -12,9 +13,12 @@ if(!empty($_POST)){
     $criado_em_aux = $_POST['criado_em'];
     $atualizado_em_aux = $_POST['atualizado_em'];
     
+    $db = new Conexao();
+    
+    $obj = new Banco($db->getDB());
         
-    $db = new \JCS\Banco(require'src/JCS/conexao.php');
-    $db->editar($id_produto,$nome_novo_produto, $descricao_nova_produto, $criado_em_aux,$atualizado_em_aux);
+    
+    $obj->editar($id_produto,$nome_novo_produto, $descricao_nova_produto, $criado_em_aux,$atualizado_em_aux);
     header("Location:index.php?page=views_produtos");
     
    } 

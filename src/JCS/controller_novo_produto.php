@@ -1,7 +1,7 @@
 <?php
 
-
-require'src/JCS/Banco.php';
+use JCS\Conexao;
+use JCS\Banco;
 
 if(!empty($_POST)){
     
@@ -13,9 +13,12 @@ if(!empty($_POST)){
         $aux_criado = $_POST['criado_pizza'];
         $aux_atual = $_POST['atualizado_pizza'];
         
-        $banco = new \JCS\Banco(require'src/JCS/conexao.php');
+        $com = new Conexao();
+        $db = new Banco($com->getDB());
         
-        $banco->inserir($aux_id, $aux_nome, $aux_descricao, $aux_criado, $aux_atual);
+        
+        
+        $db->inserir($aux_id, $aux_nome, $aux_descricao, $aux_criado, $aux_atual);
         header("Location:index.php?page=views_produtos");
         
    /*     

@@ -1,16 +1,21 @@
 <?php
-require'src/JCS/Banco.php';
+/*Modificações passadas por Luiz da code education*/
+
+use JCS\Banco;
+use JCS\Conexao;
+
 
 
 
 if(!empty($_POST)){
  
 if(isset($_POST['buscar_nome'])){
-
-$buscar = $_POST['buscar_nome']; 
     
+$conexao = new Conexao(); //Instanciando o objeto conexao para poder usar o getDB
 
-$obj = new JCS\Banco(require'src/JCS/conexao.php');
+$obj = new Banco($conexao->getDB()); //Instanciando o objeto banco e passando como parametro o obj/conexao/getdb
+
+$buscar = $_POST['buscar_nome'];
 
 $obj->listarPN($buscar);
        
