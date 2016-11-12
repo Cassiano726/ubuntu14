@@ -2,8 +2,8 @@
 
 
 
-namespace JCS;
 
+namespace JCS;
 /**
  * Description of Banco
  *
@@ -21,33 +21,7 @@ class Banco {
                 
     }
     
-    
-    /*TODO* Listar Por Nome*/
-    public function listarPN($nome) {
         
-        $query = "select * from produtos where nome='$nome'";
-        $stmt = $this->db->query($query);
-               
-        $stmt->bindValue('nome',$nome, \PDO::PARAM_STR);
-        
-        $stmt->execute();
-                
-        while ($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            
-            $auxid = $resultado['id'];
-            $auxnome = $resultado['nome'];
-            $auxdescricao = $resultado['descricao'];
-            
-            echo'   <table>'
-            . '<tr><td>Nome  :' . $auxid. '</td></tr>'
-                    . '<tr><td>Nome  :' . $auxnome. '</td></tr>'
-                    . '<tr><td>Nome  :' . $auxdescricao. '</td></tr>'
-            . '</table>';
-           
-        }
-    }
-    
-    
     /*Lista de teste para o tratar pegando o valor da lista*/
     public function listar() {
         
@@ -77,6 +51,115 @@ class Banco {
         }
         
     }
+    
+      
+    /*TODO* Listar Por Nome*/
+    public function listarPN($nome) {
+        
+        $query = "select * from produtos where nome='$nome'";
+        $stmt = $this->db->query($query);
+               
+        $stmt->bindValue('nome',$nome, \PDO::PARAM_STR);
+        
+        $stmt->execute();
+                
+        while ($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            
+            $auxid = $resultado['id'];
+            $auxnome = $resultado['nome'];
+            $auxdescricao = $resultado['descricao'];
+            
+            echo'   <table>'
+            . '<tr><td>Nome  :' . $auxid. '</td></tr>'
+                    . '<tr><td>Nome  :' . $auxnome. '</td></tr>'
+                    . '<tr><td>Nome  :' . $auxdescricao. '</td></tr>'
+            . '</table>';
+           
+        }
+    }
+    
+    public function Limit($aux, $aux1) {
+        $query = "select nome , descricao from produtos LIMIT $aux,$aux1";
+        $stmt = $this->db->query($query);
+        $stmt->execute();
+
+        while ($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+
+            echo'   <table>' . '<tr><td>Nome  :' . $resultado['nome'] . '</td></tr>'
+            . '<tr><td>Descrição  :' . $resultado['descricao'] . '</td></tr>'
+            . '</table>';
+        }
+        
+    }
+    
+    // Seleciona o campo id da nossa tabela produtos
+    public function consulta() {
+        $query = "select id from produtos";
+        $stmt = $this->db->query($query);
+        $stmt->execute();
+        
+        while($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)){
+            
+            $aux = $resultado['id'];
+            
+            echo ''.$aux;
+        }
+    }
+    
+    //consulta query o total de linhas
+    public function totalRegistro() {
+        $query = "select count(*) from produtos where id >0";
+        $stmt = $this->db->query($query);
+        $stmt->execute();
+
+        if ($stmt->fetchColumn() > 0) {
+
+            $query = "select id from produtos where id >0";
+            foreach ($stmt = $this->db->query($query) as $row) {
+
+                print "Name: " . $row['nome'] . "\n";
+            }
+        } else {
+
+            print "No rows matched the query";
+        }
+    }
+    //consulta query para pegar só um dado da tabe
+    public function descricao() {
+        $query = "select descricao from produtos";
+        $stmt = $this->db->query($query);
+        $stmt->execute();
+        
+        while($resultado = $stmt->fetch(\PDO::FETCH_ASSOC)){
+            
+            echo $resultado['descricao'].'<br>';
+        }
+    }
+    //Contando os indices da tabela
+    public function count() {
+        $sql = "SELECT count(*) FROM produtos "; 
+        $result = $this->db->prepare($sql); 
+        $result->execute(); 
+        $number = $result->fetchColumn();
+        //echo 'total de linha: '.$number;
+        return $number;
+    }
+    //função ceil
+    
+    public function ceil($param) {
+      $query = "  SELECT * FROM produtos";
+      $stmt = $this->db->prepare($query);
+      $stmt->execute();
+      
+      $query2 = "select ceil($query/$param)";
+      $stmt = $this->db->prepare($query);
+      $stmt->execute();
+      
+      $num_pagina = $stmt->fetchColumn();
+      return $num_pagina;
+    }
+    
+    
     /*Termina aqui o teste de lista e pegando o valor.*/
     
     public function inserir($id, $nome, $descricao, $criado_em, $atualizado_em){
@@ -94,8 +177,9 @@ class Banco {
         
     }
     
+   
+    
     public function editar($id, $nome, $descricao,$criado_em,$atualizado_em) {
-
         if ($id != null) {
             
             
@@ -128,6 +212,6 @@ class Banco {
         //header("Location:index.php?page=views_produtos");
         
     }
+    
+    
 }   
-
-

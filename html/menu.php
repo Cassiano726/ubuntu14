@@ -6,8 +6,8 @@
                          <li><a href="index.php?page=views_produtos">Produtos</a></li><!--Então! Ler-se assim! -->
                          <li><a href="index.php?page=novo_produto">Nova Pizza</a></li>
                          <li><a href="index.php?page=buscar_nome">Buscar Pizza</a></li>
-                       <!--  <li><a href="index.php?page=#">#</a></li>
-                         <li><a href="index.php?page=#">#</a></li> -->
+                         <li><a href="index.php?=#"></a></li>
+                         <!-- <li><a href="index.php?page=#">#</a></li> -->
                          <!--
                                        
                            Para que a navegação parta sempre o index.php chame a 
@@ -22,4 +22,3 @@
                     </ul>
                 </div>
             </div>
-
