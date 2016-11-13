@@ -12,8 +12,8 @@ require 'html/menu.php';
 <div id="conteudo">
     <?php
     if (!isset($_GET['page']))/* Na 1° versão desse código foi usado o <PHP if(!$_GET['page']).. */
-        //require("html/home.php");
-            require("src/JCS/paginacao/pag.php");
+        require("html/home.php");
+           
     else
         require_once("src/JCS/{$_GET['page']}.php"); //Lembrar que pode implementar dessa forma.
         

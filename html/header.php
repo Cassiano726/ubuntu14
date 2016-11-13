@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" href="../styles/frontend.css">
         <link rel="stylesheet" type="text/css" href="../styles/form.css">
          <link href="css/bootstrap.min.css" rel="stylesheet">
+         <title>Pizzaria D'Italia</title>
     </head>
 
     <body>
